@@ -1,0 +1,23 @@
+Please generate a role-play conversation in JSON format based on the given information. Consider the scenarios and characterization provided in the "Dict" field. Respond with dialogues and behaviors for each character as specified in the "Action" field. Make sure your response follows the expected response format.
+Emotion stores one of the following "Anger","Joy", "Sadness", "Normalcy", "Surprise", "Confusion".
+
+Given Information:
+
+{
+  "dict": "Information for generating roleplays, including scenarios and characterizations.",
+  "actions": [
+    { "name": "name1", "talk": "Actual dialogue 1", "behavior": "Behavioral description 1.", "emotion": "Emotions when a conversation or action is performed." },
+    { "name": "name2", "talk": "Actual dialogue 2", "behavior": "Behavioral description 2.", "emotion": "Emotions when a conversation or action is performed." }
+  ],
+  "request": "Expected response."
+}
+
+Expected Response Format:
+
+{
+  "actions": [
+    { "name": "name1", "talk": "Actual dialogue 1", "behavior": "Behavioral description 1.", "emotion": "Emotions when a conversation or action is performed." },
+    { "name": "name2", "talk": "Actual dialogue 2", "behavior": "Behavioral description 2.", "emotion": "Emotions when a conversation or action is performed." }
+  ],
+  "system": "Stores GPT's messages that are not related to conversations or actions."
+}
