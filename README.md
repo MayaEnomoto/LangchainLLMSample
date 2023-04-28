@@ -7,12 +7,20 @@ Langchain LLM Sample is a sample application that demonstrates the usage of the 
 1. Clone this repository:
 
 git clone https://github.com/MayaEnomoto/LangchainLLMSample.git
+<br>
+<br>
 
 2. Install the required dependencies:
 
 pip install -r requirements.txt
 
 ## Usage
+
+0. Set Open AI API:
+
+Set your Open AI API-key in config.py.
+<br>
+<br>
 
 1. Run the application:
 
