@@ -20,17 +20,18 @@ class LoadDataThread(QThread):
 class GenerateConversationThread(QThread):
     finished = pyqtSignal(dict)
 
-    def __init__(self, user_input_json, system_message: str, use_multiple_responses):
+    def __init__(self, faiss_index_path, user_input_json, system_message: str, use_multiple_responses):
         super().__init__()
+        self.faiss_index_path = faiss_index_path
         self.user_input_json = user_input_json
         self.system_message = system_message
         self.use_multiple_responses = use_multiple_responses
 
     def run(self):
         if self.use_multiple_responses:
-            response_dict = generate_multiple_conversations(self.user_input_json, self.system_message)
+            response_dict = generate_multiple_conversations(self.faiss_index_path, self.user_input_json, self.system_message)
         else:
-            response_dict = generate_single_conversation(self.user_input_json, self.system_message)
+            response_dict = generate_single_conversation(self.faiss_index_path, self.user_input_json, self.system_message)
         self.finished.emit(response_dict)
 
 class MainWindow(QMainWindow):
@@ -153,16 +154,14 @@ class MainWindow(QMainWindow):
         self.generate_button.setEnabled(False)
         self.progress_bar.setValue(0)
 
-        self.generate_conversation_thread = GenerateConversationThread(user_input_json, system_message, use_multiple_responses)
+        faiss_index_path = "faiss_index"
+        self.generate_conversation_thread = GenerateConversationThread(faiss_index_path, user_input_json, system_message, use_multiple_responses)
         self.generate_conversation_thread.finished.connect(self.on_generate_conversation_finished)
         self.generate_conversation_thread.start()
 
     def on_generate_conversation_finished(self, response_dict):
-        # response_dict["output_text"]をJSONオブジェクトに変換
         formatted_response = json.loads(response_dict["output_text"])
-        
         response_text = json.dumps(formatted_response, indent=2, ensure_ascii=False)
-        
         self.output.setPlainText(response_text)
         self.generate_button.setEnabled(True)
         self.progress_bar.setValue(100)

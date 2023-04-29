@@ -6,13 +6,13 @@ from langchain.chains.question_answering import load_qa_chain
 from langchain.chat_models import ChatOpenAI
 from utils import is_valid_json_format
 
-def generate_single_conversation(user_input_json, system_message: str, max_retries=3) -> str:
+def generate_single_conversation(faiss_index_path, user_input_json, system_message: str, max_retries=3) -> str:
 
     conversation_prompt = f"{user_input_json}"
 
     embeddings = OpenAIEmbeddings()
 
-    db = FAISS.load_local("faiss_index", embeddings)
+    db = FAISS.load_local(faiss_index_path, embeddings)
 
     query = conversation_prompt
     embedding_vector = embeddings.embed_query(query)
@@ -42,13 +42,13 @@ def generate_single_conversation(user_input_json, system_message: str, max_retri
 
     return response_dict
 
-def generate_multiple_conversations(user_input_json, system_message: str, max_retries=3) -> str:
+def generate_multiple_conversations(faiss_index_path, user_input_json, system_message: str, max_retries=3) -> str:
 
     conversation_prompt = f"{user_input_json}"
 
     embeddings = OpenAIEmbeddings()
 
-    db = FAISS.load_local("faiss_index", embeddings)
+    db = FAISS.load_local(faiss_index_path, embeddings)
 
     query = conversation_prompt
     embedding_vector = embeddings.embed_query(query)
