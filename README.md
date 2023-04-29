@@ -82,7 +82,7 @@ Please refer to sample_input.csv.
 <br>
 sample2\sample_input.csv
 <br>
-Progress, Location, Emotion of the conversation (bright topic, sad topic, etc.)
+Progress/Location/etc, Actor, Emotion of the conversation (bright topic, sad topic, etc.)
 
 (3)Select Output Txt:
 Choose a folder to save the results and enter a file name.
