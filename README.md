@@ -3,7 +3,7 @@
 Langchain LLM Sample is a sample application that demonstrates the usage of the Langchain library to generate realistic and engaging dialogues with non-player characters (NPCs) in role-playing games. This project is powered by OpenAI's GPT API and uses a custom implementation to generate the conversations.
 
 ## Explanatory Video (youtube)
-![Explanatory Video(youtube)](https://youtu.be/GR7Nx7eanis)
+https://youtu.be/GR7Nx7eanis
 
 ## Installation
 
